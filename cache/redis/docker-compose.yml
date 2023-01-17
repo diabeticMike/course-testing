@@ -1,0 +1,30 @@
+version: "3.8"
+
+volumes:
+  psql-volume:
+  redis-volume:
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: psql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    command: [ "postgres", "-c", "log_statement=all" ] # log all queries into the container log file
+    volumes:
+      - psql-volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  redis:
+    image: 'docker.io/bitnami/redis:6.0-debian-10'
+    container_name: 'redis'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis-volume:/bitnami/redis/data'
