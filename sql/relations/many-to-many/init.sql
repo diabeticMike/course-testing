@@ -17,7 +17,8 @@ CREATE TABLE teams (
 CREATE TABLE users_teams (
     id uuid primary key,
     user_id uuid not null references users (id) on delete cascade,
-    team_id uuid not null references teams (id) on delete cascade
+    team_id uuid not null references teams (id) on delete cascade,
+    unique (user_id, team_id)
 );
 
 INSERT INTO users (
@@ -60,6 +61,11 @@ INSERT INTO users_teams (
     'd7c4b4e9-b08e-4b4d-9e71-c90e19b12964',
     '95285f8f-4880-4258-8712-a622f413bd30',
     '683624a3-d03a-47d2-b8d1-5712fc199504'
+),
+(
+    'd8c4b4e7-b08e-4b4d-9e71-c90e19b12964',
+    'ed75f0e9-ca28-4741-af93-a459ddbabe08',
+    'b61756fe-0d4b-452e-9189-0d49664116d8'
 ),
 (
     'd8c4b4e9-b08e-4b4d-9e71-c90e19b12964',
