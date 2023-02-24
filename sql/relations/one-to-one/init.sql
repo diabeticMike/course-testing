@@ -4,13 +4,13 @@ alter database db set timezone = 'utc';
 -- work with a particular db (one postgresql instance could have many dbs)
 \c db;
 
-create table employee (
+create table "employee" (
     id uuid primary key,
     name text,
     department text
 );
 
-create table employee_contact (
+create table "employee_contact" (
     id uuid primary key,
     contact_number int not null,
     employee_id uuid unique not null
