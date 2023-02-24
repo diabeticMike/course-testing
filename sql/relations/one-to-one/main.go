@@ -15,12 +15,12 @@ func main() {
 	}
 
 	var (
-		user entity.User
+		employee entity.Employee
 	)
 
-	err = db.Preload("Passport").First(&user, "id = ?", uuid.MustParse("95285f8f-4880-4258-8712-a622f413bd30")).Error
+	err = db.Preload("EmployeeContact").First(&employee, "id = ?", uuid.MustParse("95285f8f-4880-4258-8712-a622f413bd30")).Error
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%+v\n", user)
+	fmt.Printf("%+v\n", employee)
 }
