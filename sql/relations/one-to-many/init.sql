@@ -19,15 +19,15 @@ insert into "customer" (
     name
 ) values (
     '95285f8f-4880-4258-8712-a622f413bd30',
-    'jake'
+    'Jake'
 ),
 (
     'ed75f0e9-ca28-4741-af93-a459ddbabe08',
-    'german'
+    'German'
 ),
 (
     'ed85f0e9-ca28-4741-af93-a459ddbabe08',
-    'dave'
+    'Jave'
 );
 
 insert into "order" (
