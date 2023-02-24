@@ -12,7 +12,7 @@ create table employee (
 
 create table employee_contact (
     id uuid primary key,
-    contact_number int,
+    contact_number int not null,
     employee_id uuid unique not null
         references "employee" (id) on delete cascade
 );

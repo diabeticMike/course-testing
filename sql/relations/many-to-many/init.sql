@@ -6,7 +6,7 @@ alter database db set timezone = 'utc';
 
 create table "user" (
     id uuid primary key,
-    name text not null unique
+    name text not null
 );
 
 create table "team" (
