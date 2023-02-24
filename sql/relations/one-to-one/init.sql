@@ -1,37 +1,37 @@
-CREATE DATABASE db;
-ALTER DATABASE db SET TIMEZONE = 'UTC';
+create database db;
+alter database db set timezone = 'utc';
 
--- work with a particular db (one PostgreSQL instance could have many DBs)
+-- work with a particular db (one postgresql instance could have many dbs)
 \c db;
 
-CREATE TABLE users (
+create table users (
     id uuid primary key,
     name text not null unique
 );
 
-CREATE TABLE passports (
+create table passports (
     id uuid primary key,
     code smallint not null unique,
     user_id uuid not null unique references users (id) on delete cascade
 );
 
-INSERT INTO users (
+insert into users (
     id,
     name
-) VALUES (
+) values (
     '95285f8f-4880-4258-8712-a622f413bd30',
-    'Olivia'
+    'olivia'
 ),
 (
     'ed75f0e9-ca28-4741-af93-a459ddbabe08',
-    'German'
+    'german'
 );
 
-INSERT INTO passports (
+insert into passports (
     id,
     code,
     user_id
-) VALUES (
+) values (
     '683624a3-d03a-47d2-b8d1-5712fc199504',
     '21234',
     '95285f8f-4880-4258-8712-a622f413bd30'

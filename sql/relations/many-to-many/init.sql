@@ -1,30 +1,29 @@
-CREATE DATABASE db;
-ALTER DATABASE db SET TIMEZONE = 'UTC';
+create database db;
+alter database db set timezone = 'utc';
 
--- work with a particular db (one PostgreSQL instance could have many DBs)
+-- work with a particular db (one postgresql instance could have many dbs)
 \c db;
 
-CREATE TABLE users (
+create table "user" (
     id uuid primary key,
-    name text NOT NULL UNIQUE
+    name text not null unique
 );
 
-CREATE TABLE teams (
+create table "team" (
     id uuid primary key,
-    name text NOT NULL UNIQUE
+    name text not null unique
 );
 
-CREATE TABLE users_teams (
-    id uuid primary key,
-    user_id uuid not null references users (id) on delete cascade,
-    team_id uuid not null references teams (id) on delete cascade,
+create table "user_team" (
+    user_id uuid not null references "user" (id) on delete cascade,
+    team_id uuid not null references "team" (id) on delete cascade,
     unique (user_id, team_id)
 );
 
-INSERT INTO users (
+insert into "user" (
     id,
     name
-) VALUES (
+) values (
     '95285f8f-4880-4258-8712-a622f413bd30',
     'user1'
 ),
@@ -37,10 +36,10 @@ INSERT INTO users (
     'user3'
 );
 
-INSERT INTO teams (
+insert into "team" (
     id,
     name
-) VALUES (
+) values (
     '683624a3-d03a-47d2-b8d1-5712fc199504',
     'team1'
 ),
@@ -53,32 +52,26 @@ INSERT INTO teams (
     'team3'
 );
 
-INSERT INTO users_teams (
-    id,
+insert into "user_team" (
     user_id,
     team_id
-) VALUES (
-    'd7c4b4e9-b08e-4b4d-9e71-c90e19b12964',
+) values (
     '95285f8f-4880-4258-8712-a622f413bd30',
     '683624a3-d03a-47d2-b8d1-5712fc199504'
 ),
 (
-    'd8c4b4e7-b08e-4b4d-9e71-c90e19b12964',
     'ed75f0e9-ca28-4741-af93-a459ddbabe08',
     'b61756fe-0d4b-452e-9189-0d49664116d8'
 ),
 (
-    'd8c4b4e9-b08e-4b4d-9e71-c90e19b12964',
     '95285f8f-4880-4258-8712-a622f413bd30',
     'b61756fe-0d4b-452e-9189-0d49664116d8'
 ),
 (
-    'c385dd14-352e-41e2-aecc-4a3152d51ef2',
     'ed75f0e9-ca28-4741-af93-a459ddbabe08',
     '75dabb89-f079-4510-94e0-cc8d23f67d19'
 ),
 (
-    'a385dd14-352e-41e2-aecc-4a3152d51ef1',
     'd89342dc-9224-441d-a4af-bdd837a3b239',
     '75dabb89-f079-4510-94e0-cc8d23f67d19'
 );
