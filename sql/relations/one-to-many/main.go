@@ -15,12 +15,12 @@ func main() {
 	}
 
 	var (
-		father entity.Father
+		customer entity.Customer
 	)
 
-	err = db.Preload("Children").First(&father, "id = ?", uuid.MustParse("95285f8f-4880-4258-8712-a622f413bd30")).Error
+	err = db.Preload("Orders").First(&customer, "id = ?", uuid.MustParse("95285f8f-4880-4258-8712-a622f413bd30")).Error
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%+v\n", father)
+	fmt.Printf("%+v\n", customer)
 }
